@@ -80,7 +80,7 @@ function changeImage(themeMode = 'light') {
 
     if (themeMode === "dark") {
 
-        icon.src = './assets/images/icon/sun.svg';
+        icon.src = 'https://james1219-max.github.io/Bitrader_files/sun.svg';
         var images = document.querySelectorAll('img.dark');
 
         for (var i = 0; i < images.length; i++) {
@@ -93,7 +93,7 @@ function changeImage(themeMode = 'light') {
             images[i].src = newSrc;
         }
     } else {
-        icon.src = './assets/images/icon/moon.svg';
+        icon.src = 'https://james1219-max.github.io/Bitrader_files/moon.svg';
         var images = document.querySelectorAll('img.dark');
 
         for (var i = 0; i < images.length; i++) {
