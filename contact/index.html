@@ -375,36 +375,32 @@
 
                 <!-- Contact Form Section -->
                 <div class="col-md-7">
-                    <div class="contact__form">
-                        <form id="contactForm" action="javascript:void(0);" data-aos="fade-left" data-aos-duration="1000" class="aos-init aos-animate">
-                            <div class="row g-4">
-                                <div class="col-12">
-                                    <div>
-                                        <label for="name" class="form-label">Name</label>
-                                        <input class="form-control" type="text" id="name" placeholder="Full Name" required="">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div>
-                                        <label for="email" class="form-label">Email</label>
-                                        <input class="form-control" type="email" id="email" placeholder="Email here" required="">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div>
-                                        <label for="subject" class="form-label">Subject</label>
-                                        <input class="form-control" type="text" id="subject" placeholder="Subject of your message" required="">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div>
-                                        <label for="textarea" class="form-label">Message</label>
-                                        <textarea cols="30" rows="5" class="form-control" id="textarea" placeholder="Enter Your Message" required=""></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="trk-btn trk-btn--border trk-btn--primary mt-4 d-block">Contact Us Now</button>
-                        </form>
+                   <form id="contactForm" action="javascript:void(0);" data-aos="fade-left" data-aos-duration="1000" class="aos-init aos-animate">
+  <div class="row g-4">
+    <div class="col-12">
+      <div>
+        <label for="name" class="form-label">Email Us</label>
+      </div>
+    </div>
+    
+    <div class="col-12">
+      <!-- Display the Email with the Image as an item -->
+      <div class="contact__item aos-init aos-animate" data-aos="fade-right" data-aos-duration="1100">
+        <div class="contact__item-inner">
+          <div class="contact__item-thumb">
+            <span><img src="https://thetork.com/demos/html/bitrader/assets/images/contact/2-dark.png" alt="contact-icon" class="dark"></span>
+          </div>
+          <div class="contact__item-content">
+            <p id="emailAddress">Bitrader@gmail.com</p> <!-- The email to be copied -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copy Email Button -->
+  <button type="submit" class="trk-btn trk-btn--border trk-btn--primary mt-4 d-block" id="copyEmailBtn">Copy Email</button>
+</form>
                     </div>
                 </div>
             </div>
