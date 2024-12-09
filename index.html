@@ -278,25 +278,25 @@ function loadVideo(element) {
     // Create the iframe and load the video inside it
     var iframe = document.createElement('iframe');
     iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
-    iframe.width = "100%";
-    iframe.height = "100%";  // Use 100% to take up the full height of the container
     iframe.frameBorder = "0";
     iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
-    
-    // Directly clear the innerHTML of the clicked element (which is the .thumbnail-wrapper)
-    element.innerHTML = "";  // Clear the thumbnail image and play button
-    
-    // Hide the play button completely (this is optional since we're clearing everything)
-    // You can remove this part if it's not necessary
-    var playButton = element.querySelector('.play-button');
-    if (playButton) {
-        playButton.style.display = 'none'; // Hide the play button
-    }
-    
-    // Append the iframe to the element (thumbnail-wrapper)
+
+    // Get the dimensions of the .thumbnail-wrapper
+    var wrapperWidth = element.offsetWidth;  // Get the width of the thumbnail-wrapper
+    var wrapperHeight = element.offsetHeight;  // Get the height of the thumbnail-wrapper
+
+    // Set the iframe to match the dimensions of the .thumbnail-wrapper
+    iframe.width = wrapperWidth + "px";
+    iframe.height = wrapperHeight + "px";
+
+    // Clear the contents of the thumbnail-wrapper (remove thumbnail and play button)
+    element.innerHTML = "";  
+
+    // Append the iframe to the thumbnail-wrapper
     element.appendChild(iframe); // Append the iframe
 }
 </script>
+
 
           </div>
         </div>
