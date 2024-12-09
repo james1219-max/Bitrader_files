@@ -208,9 +208,8 @@ This versatile Forex EA is compatible with all major currency pairs, giving you 
 
 .thumbnail-wrapper {
     position: relative;
-    width: 100%;
-    max-width: 678px; /* Set to match the desired width */
-    height: 370px; /* Set the height to match the thumbnail */
+    width: 657.77px; /* Set width to your desired size */
+    height: 370px;    /* Set height to match the desired size */
     cursor: pointer;
     overflow: hidden; /* Keeps the image within bounds */
     display: flex;
@@ -246,15 +245,15 @@ This versatile Forex EA is compatible with all major currency pairs, giving you 
 
 /* Make sure iframe takes the full container size */
 .thumbnail-wrapper iframe {
-    width: 100%;
-    height: 100%;
+    width: 657.77px !important; /* Force the iframe width to match your thumbnail */
+    height: 370px !important;   /* Force the iframe height to match your thumbnail */
     border: none;
 }
 
 /* Mobile-specific adjustments */
 @media (max-width: 768px) {
     .thumbnail-wrapper {
-        max-width: 100%;
+        width: 100%; /* Allow it to scale down on mobile */
         height: auto;
     }
     .thumbnail {
@@ -264,11 +263,9 @@ This versatile Forex EA is compatible with all major currency pairs, giving you 
     .play-button {
         width: 50px;
         height: 50px;
-        /* Optionally hide play button on mobile if not needed */
     }
 }
 </style>
-
 <script>
 function loadVideo(element) {
     // Get the video ID (for YouTube)
