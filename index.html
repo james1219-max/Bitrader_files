@@ -80,9 +80,6 @@
               <li>
                 <a href="#contactSection">Contact Us</a>
               </li>
-              <li>
-                <a href="#contactSection">Contact Us</a>
-              </li>
 
               <li>
                 <a href="#contactSection">Contact Us</a>
@@ -187,7 +184,31 @@ This versatile Forex EA is compatible with all major currency pairs, giving you 
     " src="https://www.youtube.com/embed/fOd_eH2P-f4" width="678">
 </iframe>
             </div>
-<style>.banner__thumb {
+<style>
+  <style>
+/* Mobile-specific adjustments (max-width: 768px) */
+@media screen and (max-width: 768px) {
+
+    /* Adjust the thumbnail size inside the iframe on mobile */
+    .ytp-cued-thumbnail-overlay-image {
+        background-size: contain !important; /* Ensures the thumbnail fits within the iframe container */
+        background-position: center !important; /* Centers the thumbnail image */
+        max-width: 100% !important; /* Prevents the thumbnail from becoming too large */
+        max-height: 100% !important; /* Prevents the thumbnail from becoming too large */
+    }
+}
+.banner__thumb {
+    margin-top: 71px; /* Change this value to control the drop of the video */
+    display: flex;
+    justify-content: center; /* Ensures the iframe is centered horizontally */
+}
+
+.banner__thumb iframe {
+    max-width: 100%; /* Makes the iframe responsive */
+    height: 360px; /* Sets the height of the iframe */
+}
+</style>
+  .banner__thumb {
     margin-top: 71px; /* Change this value to control the drop of the video */
     display: flex;
     justify-content: center; /* Ensures the iframe is centered horizontally */
