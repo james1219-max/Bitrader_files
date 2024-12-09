@@ -283,17 +283,17 @@ function loadVideo(element) {
     iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"; // Allow fullscreen
     iframe.allowFullscreen = true; // Allow fullscreen on the iframe
 
-    // Replace the thumbnail with the iframe
-    var wrapper = element.querySelector('.thumbnail-wrapper');
-    wrapper.innerHTML = "";  // Clear the thumbnail image and play button
+    // Clear the content of the thumbnail-wrapper (pass 'this' as the element to work on)
+    element.innerHTML = "";  // Clear the thumbnail image and play button
     
     // Hide the play button completely
-    var playButton = wrapper.querySelector('.play-button');
+    var playButton = element.querySelector('.play-button');
     if (playButton) {
         playButton.style.display = 'none'; // Hide the play button
     }
     
-    wrapper.appendChild(iframe); // Append the iframe
+    // Append the iframe to the wrapper
+    element.appendChild(iframe); // Append the iframe
 
     // Set up event listener for when the video ends and reset the thumbnail
     iframe.addEventListener('load', function() {
@@ -303,7 +303,7 @@ function loadVideo(element) {
             if (event.data === YT.PlayerState.ENDED) {
                 // Reset thumbnail when the video ends
                 setTimeout(function() {
-                    resetThumbnail(wrapper); // Reset the thumbnail after a short delay
+                    resetThumbnail(element); // Reset the thumbnail after a short delay
                 }, 500); // Wait 500ms before resetting
             }
         });
