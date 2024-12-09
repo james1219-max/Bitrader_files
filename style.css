@@ -4207,7 +4207,7 @@ h6 a {
   max-inline-size: 15ch;
 }
 .banner__content-moto {
-  color: #f0f0f0;  /* Bright Grey */
+  color: var(--text-color);
 }
 @media (min-width: 576px) {
   .banner__content-moto {
