@@ -269,8 +269,7 @@ This versatile Forex EA is compatible with all major currency pairs, giving you 
 }
 </style>
 
-    
-<script>
+<script>    
 function loadVideo(element) {
     // Get the video ID (for YouTube)
     var videoId = "fOd_eH2P-f4"; // You can dynamically fetch the video ID based on the thumbnail's data
@@ -278,24 +277,24 @@ function loadVideo(element) {
     // Create the iframe and load the video inside it
     var iframe = document.createElement('iframe');
     iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+    iframe.width = "657.77"; // Set iframe width to match the thumbnail width
+    iframe.height = "370";   // Set iframe height to match the thumbnail height
     iframe.frameBorder = "0";
     iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
-
-    // Get the dimensions of the .thumbnail-wrapper
-    var wrapperWidth = element.offsetWidth;  // Get the width of the thumbnail-wrapper
-    var wrapperHeight = element.offsetHeight;  // Get the height of the thumbnail-wrapper
-
-    // Set the iframe to match the dimensions of the .thumbnail-wrapper
-    iframe.width = wrapperWidth + "px";
-    iframe.height = wrapperHeight + "px";
-
-    // Clear the contents of the thumbnail-wrapper (remove thumbnail and play button)
-    element.innerHTML = "";  
-
-    // Append the iframe to the thumbnail-wrapper
-    element.appendChild(iframe); // Append the iframe
+    
+    // Replace the thumbnail with the iframe
+    var wrapper = element.querySelector('.thumbnail-wrapper');
+    wrapper.innerHTML = "";  // Clear the thumbnail image and play button
+    
+    // Hide the play button completely
+    var playButton = wrapper.querySelector('.play-button');
+    if (playButton) {
+        playButton.style.display = 'none'; // Hide the play button
+    }
+    
+    wrapper.appendChild(iframe); // Append the iframe
 }
-</script>
+ </script>
 
 
           </div>
