@@ -283,17 +283,17 @@ function loadVideo(element) {
     iframe.frameBorder = "0";
     iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
     
-    // Replace the thumbnail with the iframe
-    var wrapper = element.querySelector('.thumbnail-wrapper');
-    wrapper.innerHTML = "";  // Clear the thumbnail image and play button
+    // Directly clear the contents of the clicked thumbnail-wrapper (the `element`)
+    element.innerHTML = "";  // Clear the thumbnail image and play button
     
     // Hide the play button completely
-    var playButton = wrapper.querySelector('.play-button');
+    var playButton = element.querySelector('.play-button');
     if (playButton) {
         playButton.style.display = 'none'; // Hide the play button
     }
     
-    wrapper.appendChild(iframe); // Append the iframe
+    // Append the iframe to the element
+    element.appendChild(iframe); // Append the iframe inside the thumbnail-wrapper
 }
 </script>
 
