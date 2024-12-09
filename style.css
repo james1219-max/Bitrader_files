@@ -4207,7 +4207,7 @@ h6 a {
   max-inline-size: 15ch;
 }
 .banner__content-moto {
-  color: var(--text-color);
+  color: #ffffff; /* Sets the text color to white */
 }
 @media (min-width: 576px) {
   .banner__content-moto {
