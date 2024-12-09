@@ -299,19 +299,80 @@ function loadVideo(element) {
         }
     });
 }
+
+// 3. Detect video end and revert to the thumbnail
+function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.ENDED) {
+        // Exit fullscreen if the user was in fullscreen mode
+        exitFullScreen();
+
+        // Replace the iframe with the thumbnail and play button again
+        var thumbnailWrapper = currentThumbnailElement;
+        thumbnailWrapper.innerHTML = ''; // Clear the iframe
+        var thumbnail = document.createElement('img');
+        thumbnail.src = "https://img.youtube.com/vi/fOd_eH2P-f4/maxresdefault.jpg"; // Replace with actual thumbnail image URL
+        thumbnail.alt = "Video Thumbnail";
+        thumbnail.classList.add('thumbnail');
+        
+        var playButton = document.createElement('div');
+        playButton.classList.add('play-button');
+        var playImg = document.createElement('img');
+        playImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/2560px-YouTube_full-color_icon_%282024%29.svg.png";
+        playButton.appendChild(playImg);
+        
+        thumbnailWrapper.appendChild(thumbnail); // Append thumbnail
+        thumbnailWrapper.appendChild(playButton); // Append play button
+        
+        // Reattach the 'loadVideo' click functionality to the thumbnail
+        thumbnailWrapper.setAttribute("onclick", "loadVideo(this)");
+    }
+}
+
+// Function to exit full-screen (if the user is in full-screen mode)
+function exitFullScreen() {
+    var iframe = document.querySelector('iframe');
+    if (iframe && document.fullscreenElement) {
+        // Exit full-screen if the document is currently in full-screen mode
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+            document.msExitFullscreen();
+        }
+    }
+}
+  function forceMobileView() {
+    var userAgent = navigator.userAgent.toLowerCase();
+    
+    // Detect devices (iPads, Surface Pro, etc.)
+    var isIphone = /iphone/.test(userAgent);
+    var isIpad = /ipad/.test(userAgent);
+    var isAndroidTablet = /android.*(tablet|kindle|playbook)/.test(userAgent);
+    var isSurfacePro = /windows.*arm|surface/.test(userAgent);
+    var isZenbookFold = /zenbook fold/.test(userAgent);
+    var isNestHub = /google.*nest hub/.test(userAgent);
+
+    // List of devices to force mobile view
+    var devicesToForceMobile = [isIphone, isIpad, isAndroidTablet, isSurfacePro, isZenbookFold, isNestHub];
+
+    // Check if the device matches any of the conditions
+    if (devicesToForceMobile.some(Boolean)) {
+      // Modify the viewport meta tag for mobile behavior
+      var metaTag = document.querySelector('meta[name="viewport"]');
+      if (metaTag) {
+        metaTag.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+      }
+    }
+  }
+
+  // Run the function when the page loads
+  window.onload = function() {
+    forceMobileView();
+  };
 </script>
-
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="banner__shape">
-      <span class="banner__shape-item banner__shape-item--1"><img src="https://thetork.com/demos/html/bitrader/assets/images/banner/home1/4.png" alt="shape icon"></span>
-    </div>
-
-  </section>
 
 
 
