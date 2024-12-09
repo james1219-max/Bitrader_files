@@ -276,26 +276,21 @@ function loadVideo(element) {
     
     // Create the iframe and load the video inside it
     var iframe = document.createElement('iframe');
-    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
-    iframe.width = "657.77"; // Set iframe width to match the thumbnail width
-    iframe.height = "370";   // Set iframe height to match the thumbnail height
+    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&rel=0&showinfo=0"; // Avoid recommended videos at the end
     iframe.frameBorder = "0";
-    iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"; // Allow YouTube features
-    iframe.allowFullscreen = true;  // This allows fullscreen for the iframe
+    iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"; // Added fullscreen support
+    
+    // Set the iframe dimensions directly (657.77px width, 370px height)
+    iframe.width = "657.77"; // Hardcoded width to match your thumbnail size
+    iframe.height = "370";   // Hardcoded height to match your thumbnail size
     
     // Directly clear the innerHTML of the clicked element (which is the .thumbnail-wrapper)
     element.innerHTML = "";  // Clear the thumbnail image and play button
     
-    // Hide the play button completely (optional, as we are clearing everything)
-    var playButton = element.querySelector('.play-button');
-    if (playButton) {
-        playButton.style.display = 'none'; // Hide the play button
-    }
-    
     // Append the iframe to the element (thumbnail-wrapper)
     element.appendChild(iframe); // Append the iframe
 }
- </script>
+</script>
 
 
           </div>
