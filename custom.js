@@ -9,77 +9,58 @@ document.addEventListener('DOMContentLoaded', function () {
             preloader.style.display = 'none';
         }, 500); // .5 seconds for the fade-out transition
     }, 1000); // 1 second delay before starting the fade-out effect
-});
-// =================== preloader js end ================== //
 
+    // Call this function to set the theme on page load
+    switchThemeByUrl();
+});
 
 // =================== light and dark start ================== //
-
 const colorSwitcher = document.getElementById('btnSwitch');
 
-
-switchThemeByUrl();
-updateThemeColor(localStorage.getItem('theme'))
-
-
 colorSwitcher.addEventListener('click', () => {
-
     const theme = localStorage.getItem('theme');
 
     if (theme && theme === 'dark') {
-
         updateThemeColor('light');
-
     } else {
         updateThemeColor('dark');
-
     }
-
 });
 
-function updateThemeColor(themeMode = 'light') {
-
+function updateThemeColor(themeMode = 'dark') {
     document.documentElement.setAttribute('data-bs-theme', themeMode);
-    localStorage.setItem('theme', themeMode)
+    localStorage.setItem('theme', themeMode); // Save theme preference to localStorage
 
     if (themeMode === 'dark') {
         colorSwitcher.classList.add('dark-switcher');
-
     } else {
         colorSwitcher.classList.remove('dark-switcher');
     }
 
     changeImage(themeMode);
-
 }
-
-
 
 function switchThemeByUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const theme = urlParams.get('theme');
 
     if (theme) {
-        localStorage.setItem("theme", theme);
+        localStorage.setItem("theme", theme); // Set theme from URL parameter
     }
 
+    // If no theme is found in localStorage, set the default theme to 'dark'
+    const currentTheme = localStorage.getItem('theme') || 'dark'; // Default to dark theme
+    updateThemeColor(currentTheme);
 }
 
 // =================== light and dark end ================== //
 
-
-
-
 // =================== Change image path start ================== //
 
-
 function changeImage(themeMode = 'light') {
-
     const icon = document.querySelector('#btnSwitch img');
 
-
     if (themeMode === "dark") {
-
         icon.src = 'sun.svg';
         var images = document.querySelectorAll('img.dark');
 
@@ -102,24 +83,12 @@ function changeImage(themeMode = 'light') {
             images[i].src = newSrc;
         }
     }
-
 }
-
 
 // =================== Change image path end ================== //
 
+// =================== header js start here =================== //
 
-
-
-
-
-
-
-
-// =================== header js start here ===================
-
-
-// Add class 'menu-item-has-children' to parent li elements of '.submenu'
 var submenuList = document.querySelectorAll("ul>li>.submenu");
 submenuList.forEach(function (submenu) {
     var parentLi = submenu.parentElement;
@@ -128,7 +97,6 @@ submenuList.forEach(function (submenu) {
     }
 });
 
-// Fix dropdown menu overflow problem
 var menuList = document.querySelectorAll("ul");
 menuList.forEach(function (menu) {
     var parentLi = menu.parentElement;
@@ -142,15 +110,10 @@ menuList.forEach(function (menu) {
     }
 });
 
-
-
-// Toggle menu on click
-
 var menuLinks = document.querySelectorAll(".menu li a");
-
 menuLinks.forEach(function (link) {
     link.addEventListener("click", function (e) {
-        e.stopPropagation(); // prevent the event from bubbling up to parent elements
+        e.stopPropagation();
         var element = link.parentElement;
         if (parseInt(window.innerWidth, 10) < 1200) {
             if (element.classList.contains("open")) {
@@ -164,10 +127,6 @@ menuLinks.forEach(function (link) {
     });
 });
 
-
-
-
-// Toggle header bar on click
 var headerBar = document.querySelector(".header-bar");
 headerBar.addEventListener("click", function () {
     headerBar.classList.toggle("active");
@@ -177,10 +136,6 @@ headerBar.addEventListener("click", function () {
     }
 });
 
-
-
-
-//Header
 var fixedTop = document.querySelector("header");
 window.addEventListener("scroll", function () {
     if (window.scrollY > 300) {
@@ -190,81 +145,43 @@ window.addEventListener("scroll", function () {
     }
 });
 
-
 // =================== header js end here =================== //
 
-
-
-
-//Animation on Scroll initializing
+// Animation on Scroll initializing
 AOS.init();
-
-
-
 
 // =================== custom trk slider js here =================== //
 
-// component slider here
 const Partner = new Swiper('.partner__slider', {
     spaceBetween: 24,
     grabCursor: true,
     loop: true,
     slidesPerView: 2,
     breakpoints: {
-        576: {
-            slidesPerView: 3,
-        },
-        768: {
-            slidesPerView: 4,
-        },
-        992: {
-            slidesPerView: 5,
-            spaceBetween: 15,
-        },
-        1200: {
-            slidesPerView: 6,
-            spaceBetween: 25,
-        },
+        576: { slidesPerView: 3 },
+        768: { slidesPerView: 4 },
+        992: { slidesPerView: 5, spaceBetween: 15 },
+        1200: { slidesPerView: 6, spaceBetween: 25 },
     },
-    autoplay: {
-        delay: 1,
-        disableOnInteraction: true,
-    },
+    autoplay: { delay: 1, disableOnInteraction: true },
     speed: 2000,
 });
 
-
-
-// blog  slider here
 const blog = new Swiper('.blog__slider', {
     spaceBetween: 24,
     grabCursor: true,
     loop: true,
     slidesPerView: 1,
     breakpoints: {
-        576: {
-            slidesPerView: 1,
-        },
-        768: {
-            slidesPerView: 2,
-        },
-        992: {
-            slidesPerView: 3,
-        },
-        1200: {
-            slidesPerView: 3,
-        }
+        576: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        992: { slidesPerView: 3 },
+        1200: { slidesPerView: 3 },
     },
-
     autoplay: true,
     speed: 500,
-    navigation: {
-        nextEl: ".blog__slider-next",
-        prevEl: ".blog__slider-prev",
-    },
+    navigation: { nextEl: ".blog__slider-next", prevEl: ".blog__slider-prev" },
 });
-
-// testimonial slider
 
 const testimonial = new Swiper('.testimonial__slider', {
     spaceBetween: 24,
@@ -272,65 +189,31 @@ const testimonial = new Swiper('.testimonial__slider', {
     loop: true,
     slidesPerView: 1,
     breakpoints: {
-        576: {
-            slidesPerView: 1,
-        },
-        768: {
-            slidesPerView: 2,
-        },
-        992: {
-            slidesPerView: 2,
-        },
-        1200: {
-            slidesPerView: 2,
-            spaceBetween: 25,
-        },
+        576: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        992: { slidesPerView: 2 },
+        1200: { slidesPerView: 2, spaceBetween: 25 },
     },
-
     autoplay: true,
     speed: 500,
-
-    navigation: {
-        nextEl: ".testimonial__slider-next",
-        prevEl: ".testimonial__slider-prev",
-    },
+    navigation: { nextEl: ".testimonial__slider-next", prevEl: ".testimonial__slider-prev" },
 });
 
-
-// testimonial slider 2
 const testimonial2 = new Swiper('.testimonial__slider2', {
     spaceBetween: 24,
     grabCursor: true,
     loop: true,
     slidesPerView: 1,
     breakpoints: {
-        576: {
-            slidesPerView: 1,
-        },
-        768: {
-            slidesPerView: 2,
-        },
-        992: {
-            slidesPerView: 3,
-        },
-        1200: {
-            slidesPerView: 3,
-            spaceBetween: 25,
-        },
+        576: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        992: { slidesPerView: 3 },
+        1200: { slidesPerView: 3, spaceBetween: 25 },
     },
-
     autoplay: true,
     speed: 500,
-
-    navigation: {
-        nextEl: ".testimonial__slider-next",
-        prevEl: ".testimonial__slider-prev",
-    },
+    navigation: { nextEl: ".testimonial__slider-next", prevEl: ".testimonial__slider-prev" },
 });
-
-
-
-// testimonial slider
 
 const testimonial3 = new Swiper('.testimonial__slider3', {
     spaceBetween: 24,
@@ -341,49 +224,24 @@ const testimonial3 = new Swiper('.testimonial__slider3', {
     speed: 500,
 });
 
-// roadmap slider 
 const roadmapSlider = new Swiper('.roadmap__slider', {
-
     grabCursor: true,
-    // loop: true,
     slidesPerView: 1,
     breakpoints: {
-        576: {
-            slidesPerView: 1,
-            spaceBetween: 15,
-        },
-        768: {
-            slidesPerView: 2,
-            spaceBetween: 15,
-        },
-        992: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-        },
-        1200: {
-            slidesPerView: 4,
-            spaceBetween: 10,
-        },
-        1400: {
-            slidesPerView: 4,
-            spaceBetween: 10,
-        }
-
+        576: { slidesPerView: 1, spaceBetween: 15 },
+        768: { slidesPerView: 2, spaceBetween: 15 },
+        992: { slidesPerView: 3, spaceBetween: 10 },
+        1200: { slidesPerView: 4, spaceBetween: 10 },
+        1400: { slidesPerView: 4, spaceBetween: 10 },
     },
-
     autoplay: true,
     speed: 500,
-
 });
 
 // =================== custom trk slider end here =================== //
 
-
-
-
 // =================== scroll js start here =================== //
 
-// Show/hide button on scroll
 window.addEventListener('scroll', function () {
     var scrollToTop = document.querySelector('.scrollToTop');
 
@@ -403,8 +261,6 @@ window.addEventListener('scroll', function () {
 var scrollToTop = document.querySelector('.scrollToTop');
 
 if (scrollToTop) {
-
-    // Click event to scroll to top
     scrollToTop.addEventListener('click', function (e) {
         e.preventDefault();
         var scrollDuration = 100; // Set scroll duration in milliseconds
@@ -421,20 +277,14 @@ if (scrollToTop) {
 
 // =================== scroll js end here =================== //
 
-
-
 // =================== count start here =================== //
 new PureCounter();
 // =================== count end here =================== //
 
-
-
-
 // =================== rtl icon direction chnage start here =================== //
-// Get the HTML tag
+
 const htmlTag = document.querySelector('html');
 
-// Function to toggle the icon directions
 function toggleAllIconsDirection() {
     const icons = document.querySelectorAll('i');
 
@@ -449,8 +299,8 @@ function toggleAllIconsDirection() {
     });
 }
 
-// Check if the HTML tag has the dir="rtl" attribute
 if (htmlTag.getAttribute('dir') === 'rtl') {
     toggleAllIconsDirection();
 }
+
 // =================== rtl icon direction chnage end here =================== //
