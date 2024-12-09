@@ -269,63 +269,31 @@ This versatile Forex EA is compatible with all major currency pairs, giving you 
 }
 </style>
 
-<script>    
+<script>
 function loadVideo(element) {
     // Get the video ID (for YouTube)
     var videoId = "fOd_eH2P-f4"; // You can dynamically fetch the video ID based on the thumbnail's data
     
     // Create the iframe and load the video inside it
     var iframe = document.createElement('iframe');
-    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&rel=0&modestbranding=1"; // rel=0 disables related videos
+    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
     iframe.width = "657.77"; // Set iframe width to match the thumbnail width
     iframe.height = "370";   // Set iframe height to match the thumbnail height
     iframe.frameBorder = "0";
-    iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"; // Allow fullscreen
-    iframe.allowFullscreen = true; // Allow fullscreen on the iframe
-
-    // Clear the content of the thumbnail-wrapper (pass 'this' as the element to work on)
+    iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"; // Allow YouTube features
+    iframe.allowFullscreen = true;  // This allows fullscreen for the iframe
+    
+    // Directly clear the innerHTML of the clicked element (which is the .thumbnail-wrapper)
     element.innerHTML = "";  // Clear the thumbnail image and play button
     
-    // Hide the play button completely
+    // Hide the play button completely (optional, as we are clearing everything)
     var playButton = element.querySelector('.play-button');
     if (playButton) {
         playButton.style.display = 'none'; // Hide the play button
     }
     
-    // Append the iframe to the wrapper
+    // Append the iframe to the element (thumbnail-wrapper)
     element.appendChild(iframe); // Append the iframe
-
-    // Set up event listener for when the video ends and reset the thumbnail
-    iframe.addEventListener('load', function() {
-        var player = new YT.Player(iframe); // Create YouTube player instance
-        
-        player.addEventListener('onStateChange', function(event) {
-            if (event.data === YT.PlayerState.ENDED) {
-                // Reset thumbnail when the video ends
-                setTimeout(function() {
-                    resetThumbnail(element); // Reset the thumbnail after a short delay
-                }, 500); // Wait 500ms before resetting
-            }
-        });
-    });
-}
-
-// Function to reset the thumbnail
-function resetThumbnail(wrapper) {
-    // Reset the play button and thumbnail
-    var thumbnail = document.createElement('img');
-    thumbnail.src = "https://img.youtube.com/vi/fOd_eH2P-f4/maxresdefault.jpg"; // Replace with your original thumbnail URL
-    thumbnail.alt = "Video Thumbnail";
-    thumbnail.classList.add('thumbnail');
-    
-    var playButton = document.createElement('div');
-    playButton.classList.add('play-button');
-    playButton.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/2560px-YouTube_full-color_icon_%282024%29.svg.png" alt="Play Button">';
-    playButton.setAttribute('onclick', 'loadVideo(this)'); // Allow the play button to trigger the video load again
-
-    wrapper.innerHTML = ''; // Clear current content
-    wrapper.appendChild(thumbnail); // Add the thumbnail back
-    wrapper.appendChild(playButton); // Add the play button back
 }
  </script>
 
