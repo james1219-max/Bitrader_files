@@ -4820,7 +4820,7 @@ h6 a {
 }
 @media (min-width: 1200px) {
   .banner__wrapper {
-    height: 600px; /* Adjust height as needed */
+    height: 525px; /* Adjust height as needed */
   }
 }
 @media (min-width: 992px) {
