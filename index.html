@@ -283,17 +283,18 @@ function loadVideo(element) {
     iframe.frameBorder = "0";
     iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
     
-    // Directly clear the contents of the clicked thumbnail-wrapper (the `element`)
+    // Directly clear the innerHTML of the clicked element (which is the .thumbnail-wrapper)
     element.innerHTML = "";  // Clear the thumbnail image and play button
     
-    // Hide the play button completely
+    // Hide the play button completely (this is optional since we're clearing everything)
+    // You can remove this part if it's not necessary
     var playButton = element.querySelector('.play-button');
     if (playButton) {
         playButton.style.display = 'none'; // Hide the play button
     }
     
-    // Append the iframe to the element
-    element.appendChild(iframe); // Append the iframe inside the thumbnail-wrapper
+    // Append the iframe to the element (thumbnail-wrapper)
+    element.appendChild(iframe); // Append the iframe
 }
 </script>
 
