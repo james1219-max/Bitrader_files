@@ -179,44 +179,124 @@ This versatile Forex EA is compatible with all major currency pairs, giving you 
           </div>
           <div class="col-lg-6 col-md-5">
             <div class="banner__thumb aos-init aos-animate" data-aos="fade-left" data-aos-duration="1000">
-              <iframe height="360
-    
-    " src="https://www.youtube.com/embed/fOd_eH2P-f4" width="678">
-</iframe>
+              <div class="video-container">
+    <!-- Video thumbnail and play button wrapper -->
+    <div class="thumbnail-wrapper" onclick="loadVideo(this)">
+        <img src="https://img.youtube.com/vi/fOd_eH2P-f4/maxresdefault.jpg" alt="Video Thumbnail" class="thumbnail"><!-- Thumbnail Image -->
+        
+        <!-- Play Button -->
+        <div class="play-button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/2560px-YouTube_full-color_icon_%282024%29.svg.png" alt="Play Button">
+        </div>
+    </div>
+</div>
+
+
+
             </div>
 <style>
-/* Mobile-specific adjustments (max-width: 768px) */
-@media screen and (max-width: 768px) {
+/* Container for the video thumbnail */
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    margin-top: 71px; /* Adjust this to move the container up */
+}
 
-    /* Adjust the thumbnail size inside the iframe on mobile */
-    .ytp-cued-thumbnail-overlay-image {
-        background-size: contain !important; /* Ensures the thumbnail fits within the iframe container */
-        background-position: center !important; /* Centers the thumbnail image */
-        max-width: 100% !important; /* Prevents the thumbnail from becoming too large */
-        max-height: 100% !important; /* Prevents the thumbnail from becoming too large */
+.thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 678px; /* Set to match the desired width */
+    height: 370px; /* Set the height to match the thumbnail */
+    cursor: pointer;
+    overflow: hidden; /* Keeps the image within bounds */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Play button styling */
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68px; /* Set the width of the play button */
+    height: 68px; /* Adjust height to match */
+    cursor: pointer;
+    pointer-events: all; /* Ensure button is clickable */
+    z-index: 1; /* Ensure button appears above the thumbnail */
+}
+
+.play-button img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensure the image inside fits the container */
+}
+
+/* Make sure iframe takes the full container size */
+.thumbnail-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .thumbnail-wrapper {
+        max-width: 100%;
+        height: auto;
+    }
+    .thumbnail {
+        width: 100%;
+        height: auto;
+    }
+    .play-button {
+        width: 50px;
+        height: 50px;
+        /* Optionally hide play button on mobile if not needed */
     }
 }
-.banner__thumb {
-    margin-top: 71px; /* Change this value to control the drop of the video */
-    display: flex;
-    justify-content: center; /* Ensures the iframe is centered horizontally */
-}
-
-.banner__thumb iframe {
-    max-width: 100%; /* Makes the iframe responsive */
-    height: 360px; /* Sets the height of the iframe */
-}
-  .banner__thumb {
-    margin-top: 71px; /* Change this value to control the drop of the video */
-    display: flex;
-    justify-content: center; /* Ensures the iframe is centered horizontally */
-}
-
-.banner__thumb iframe {
-    max-width: 100%; /* Makes the iframe responsive */
-    height: 360px; /* Sets the height of the iframe */
-}
 </style>
+
+    
+<script>
+function loadVideo(element) {
+    // Get the video ID (for YouTube)
+    var videoId = "fOd_eH2P-f4"; // You can dynamically fetch the video ID based on the thumbnail's data
+    
+    // Create the iframe and load the video inside it
+    var iframe = document.createElement('iframe');
+    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+    iframe.width = "100%";
+    iframe.height = "100%";  // Use 100% to take up the full height of the container
+    iframe.frameBorder = "0";
+    iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+    
+    // Replace the thumbnail with the iframe
+    var wrapper = element.querySelector('.thumbnail-wrapper');
+    wrapper.innerHTML = "";  // Clear the thumbnail image and play button
+    
+    // Hide the play button completely
+    var playButton = wrapper.querySelector('.play-button');
+    if (playButton) {
+        playButton.style.display = 'none'; // Hide the play button
+    }
+    
+    wrapper.appendChild(iframe); // Append the iframe
+}
+</script>
+
           </div>
         </div>
       </div>
