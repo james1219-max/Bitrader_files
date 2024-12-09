@@ -276,12 +276,13 @@ function loadVideo(element) {
     
     // Create the iframe and load the video inside it
     var iframe = document.createElement('iframe');
-    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&rel=0&modestbranding=1"; // rel=0 disables related videos
     iframe.width = "657.77"; // Set iframe width to match the thumbnail width
     iframe.height = "370";   // Set iframe height to match the thumbnail height
     iframe.frameBorder = "0";
-    iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
-    
+    iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"; // Allow fullscreen
+    iframe.allowFullscreen = true; // Allow fullscreen on the iframe
+
     // Replace the thumbnail with the iframe
     var wrapper = element.querySelector('.thumbnail-wrapper');
     wrapper.innerHTML = "";  // Clear the thumbnail image and play button
@@ -293,6 +294,38 @@ function loadVideo(element) {
     }
     
     wrapper.appendChild(iframe); // Append the iframe
+
+    // Set up event listener for when the video ends and reset the thumbnail
+    iframe.addEventListener('load', function() {
+        var player = new YT.Player(iframe); // Create YouTube player instance
+        
+        player.addEventListener('onStateChange', function(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                // Reset thumbnail when the video ends
+                setTimeout(function() {
+                    resetThumbnail(wrapper); // Reset the thumbnail after a short delay
+                }, 500); // Wait 500ms before resetting
+            }
+        });
+    });
+}
+
+// Function to reset the thumbnail
+function resetThumbnail(wrapper) {
+    // Reset the play button and thumbnail
+    var thumbnail = document.createElement('img');
+    thumbnail.src = "https://img.youtube.com/vi/fOd_eH2P-f4/maxresdefault.jpg"; // Replace with your original thumbnail URL
+    thumbnail.alt = "Video Thumbnail";
+    thumbnail.classList.add('thumbnail');
+    
+    var playButton = document.createElement('div');
+    playButton.classList.add('play-button');
+    playButton.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/2560px-YouTube_full-color_icon_%282024%29.svg.png" alt="Play Button">';
+    playButton.setAttribute('onclick', 'loadVideo(this)'); // Allow the play button to trigger the video load again
+
+    wrapper.innerHTML = ''; // Clear current content
+    wrapper.appendChild(thumbnail); // Add the thumbnail back
+    wrapper.appendChild(playButton); // Add the play button back
 }
  </script>
 
