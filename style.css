@@ -5142,11 +5142,6 @@ h6 a {
   }
 }
 .banner--style5 .banner__thumb-inner img {
-  -webkit-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-  -moz-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-  -ms-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-  -o-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-  animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
 }
 @media (min-width: 992px) {
   .banner--style5 .banner__thumb-inner img {
