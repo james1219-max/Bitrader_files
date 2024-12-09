@@ -4651,11 +4651,6 @@ h6 a {
 @media (min-width: 768px) {
   .banner--style1 .banner__thumb {
     position: absolute;
-    -webkit-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-    -moz-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-    -ms-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-    -o-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-    animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
     right: -20px;
     top: 213px;
     max-inline-size: 56%;
@@ -4663,11 +4658,6 @@ h6 a {
 }
 @media (min-width: 992px) {
   .banner--style1 .banner__thumb {
-    -webkit-animation: left-right 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-    -moz-animation: left-right 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-    -ms-animation: left-right 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-    -o-animation: left-right 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-    animation: left-right 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
     right: -20px;
     top: 213px;
     max-inline-size: 56%;
@@ -4736,11 +4726,6 @@ h6 a {
 }
 @media (min-width: 768px) {
   .banner--style2 .banner__thumb {
-    -webkit-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-    -moz-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-    -ms-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-    -o-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-    animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
     position: absolute;
     left: 0%;
     bottom: 7%;
@@ -4908,11 +4893,6 @@ h6 a {
   z-index: -2;
 }
 .banner--style3 .banner__thumb img {
-  -webkit-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-  -moz-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-  -ms-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-  -o-animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
-  animation: floating 3s cubic-bezier(0.41, 0.15, 0.64, 0.86) infinite alternate;
 }
 @media (min-width: 768px) {
   .banner--style3 .banner__thumb::before {
