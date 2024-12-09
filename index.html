@@ -267,28 +267,87 @@ This versatile Forex EA is compatible with all major currency pairs, giving you 
 }
 </style>
 <script>
+// 1. Load the YouTube Iframe Player API
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+var currentThumbnailElement;
+
+// 2. Function to load the video when the thumbnail is clicked
 function loadVideo(element) {
+    currentThumbnailElement = element; // Store the clicked thumbnail element
+
     // Get the video ID (for YouTube)
     var videoId = "fOd_eH2P-f4"; // You can dynamically fetch the video ID based on the thumbnail's data
-    
+
     // Create the iframe and load the video inside it
     var iframe = document.createElement('iframe');
-    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&rel=0&showinfo=0"; // Avoid recommended videos at the end
+    iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&rel=0";
+    iframe.width = "657.77";
+    iframe.height = "370";
     iframe.frameBorder = "0";
-    iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"; // Added fullscreen support
+    iframe.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen";
     
-    // Set the iframe dimensions directly (657.77px width, 370px height)
-    iframe.width = "657.77"; // Hardcoded width to match your thumbnail size
-    iframe.height = "370";   // Hardcoded height to match your thumbnail size
-    
-    // Directly clear the innerHTML of the clicked element (which is the .thumbnail-wrapper)
-    element.innerHTML = "";  // Clear the thumbnail image and play button
-    
-    // Append the iframe to the element (thumbnail-wrapper)
+    // Clear the thumbnail image and play button and append the iframe
+    element.innerHTML = ""; // Clear the thumbnail image and play button
     element.appendChild(iframe); // Append the iframe
+
+    // Initialize the YouTube player
+    player = new YT.Player(iframe, {
+        events: {
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+// 3. Detect video end and revert to the thumbnail
+function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.ENDED) {
+        // Exit fullscreen if the user was in fullscreen mode
+        exitFullScreen();
+
+        // Replace the iframe with the thumbnail and play button again
+        var thumbnailWrapper = currentThumbnailElement;
+        thumbnailWrapper.innerHTML = ''; // Clear the iframe
+        var thumbnail = document.createElement('img');
+        thumbnail.src = "https://img.youtube.com/vi/fOd_eH2P-f4/maxresdefault.jpg"; // Replace with actual thumbnail image URL
+        thumbnail.alt = "Video Thumbnail";
+        thumbnail.classList.add('thumbnail');
+        
+        var playButton = document.createElement('div');
+        playButton.classList.add('play-button');
+        var playImg = document.createElement('img');
+        playImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/2560px-YouTube_full-color_icon_%282024%29.svg.png";
+        playButton.appendChild(playImg);
+        
+        thumbnailWrapper.appendChild(thumbnail); // Append thumbnail
+        thumbnailWrapper.appendChild(playButton); // Append play button
+        
+        // Reattach the 'loadVideo' click functionality to the thumbnail
+        thumbnailWrapper.setAttribute("onclick", "loadVideo(this)");
+    }
+}
+
+// Function to exit full-screen (if the user is in full-screen mode)
+function exitFullScreen() {
+    var iframe = document.querySelector('iframe');
+    if (iframe && document.fullscreenElement) {
+        // Exit full-screen if the document is currently in full-screen mode
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { // Chrome
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+            document.msExitFullscreen();
+        }
+    }
 }
 </script>
-
 
           </div>
         </div>
