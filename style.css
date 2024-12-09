@@ -4818,6 +4818,11 @@ h6 a {
     bottom: 2%;
   }
 }
+@media (min-width: 1200px) {
+  .banner__wrapper {
+    height: 600px; /* Adjust height as needed */
+  }
+}
 @media (min-width: 992px) {
   .banner--style2 .banner__wrapper--style2::after {
     display: block;
