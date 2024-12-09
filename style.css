@@ -4817,6 +4817,11 @@ h6 a {
     left: 14%;
   }
 }
+@media (min-width: 1200px) {
+    .banner__wrapper {
+        height: 525px;
+    }
+}
 @media (min-width: 1400px) {
   .banner--style2 .banner__wrapper--style2::after {
     bottom: 10%;
@@ -6648,8 +6653,8 @@ textarea:focus-within {
   stroke: #0C263A;
 }
 .trk-btn.active.trk-btn--outline22, .trk-btn:hover.trk-btn--outline22 {
-  background-color: #0A4FD5;
-  border-color: #0A4FD5;
+  background-color: #FF0000;
+  border-color: #FF0000;
   color: var(--bg-white);
 }
 .trk-btn.active.trk-btn--outline22 span.style1 i rect,
