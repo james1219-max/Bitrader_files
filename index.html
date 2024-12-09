@@ -351,40 +351,36 @@ function exitFullScreen() {
 }
 </script>
 <script>
-  window.onload = function() {
-    // Define the screen sizes and device conditions you want to target
-    var deviceRedirect = [
-      { name: "iPad Mini", width: 810, height: 1080 },
-      { name: "iPad Air", width: 820, height: 1112 },
-      { name: "iPad Pro", width: 834, height: 1194 },
-      { name: "Surface Pro 7", width: 768, height: 1024 },
-      { name: "Asus Zenbook Fold", width: 768, height: 1024 },
-      { name: "Nest Hub", width: 1024, height: 600 },
-      { name: "Nest Hub Max", width: 1280, height: 800 }
-    ];
+  function forceMobileView() {
+    var userAgent = navigator.userAgent.toLowerCase();
+    
+    // Detect devices (iPads, Surface Pro, etc.)
+    var isIphone = /iphone/.test(userAgent);
+    var isIpad = /ipad/.test(userAgent);
+    var isAndroidTablet = /android.*(tablet|kindle|playbook)/.test(userAgent);
+    var isSurfacePro = /windows.*arm|surface/.test(userAgent);
+    var isZenbookFold = /zenbook fold/.test(userAgent);
+    var isNestHub = /google.*nest hub/.test(userAgent);
 
-    var isMobile = false;
-    var screenWidth = window.innerWidth;
-    var screenHeight = window.innerHeight;
+    // List of devices to force mobile view
+    var devicesToForceMobile = [isIphone, isIpad, isAndroidTablet, isSurfacePro, isZenbookFold, isNestHub];
 
-    // Check if the device matches one of the defined mobile devices
-    for (var i = 0; i < deviceRedirect.length; i++) {
-      if (
-        (screenWidth <= deviceRedirect[i].width && screenHeight <= deviceRedirect[i].height) ||
-        (screenWidth <= deviceRedirect[i].height && screenHeight <= deviceRedirect[i].width)
-      ) {
-        isMobile = true;
-        break;
+    // Check if the device matches any of the conditions
+    if (devicesToForceMobile.some(Boolean)) {
+      // Modify the viewport meta tag for mobile behavior
+      var metaTag = document.querySelector('meta[name="viewport"]');
+      if (metaTag) {
+        metaTag.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
       }
     }
+  }
 
-    // If a matching device is detected, redirect to the mobile version
-    if (isMobile) {
-      // Replace '/mobile' with your actual mobile theme URL
-      window.location.href = "/mobile";  // Redirect to mobile version
-    }
+  // Run the function when the page loads
+  window.onload = function() {
+    forceMobileView();
   };
 </script>
+
 
 
           </div>
